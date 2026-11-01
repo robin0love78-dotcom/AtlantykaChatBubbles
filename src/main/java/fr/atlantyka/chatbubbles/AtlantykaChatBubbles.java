@@ -1,7 +1,5 @@
 package fr.atlantyka.chatbubbles;
 
-import io.papermc.paper.event.player.AsyncChatEvent;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.entity.Display;
@@ -11,6 +9,7 @@ import org.bukkit.entity.TextDisplay;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -48,10 +47,11 @@ public final class AtlantykaChatBubbles extends JavaPlugin implements Listener, 
         bubbles.clear();
     }
 
-    // Capture aussi les messages annules par un chat personnalise en Skript.
+    // Skript "on chat" utilise l'evenement Bukkit historique AsyncPlayerChatEvent.
+    // On ecoute aussi les evenements annules pour conserver le chat personnalise.
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = false)
-    public void onChat(AsyncChatEvent event) {
-        String message = LegacyComponentSerializer.legacySection().serialize(event.message());
+    public void onChat(AsyncPlayerChatEvent event) {
+        String message = event.getMessage();
         if (message == null || message.isBlank()) return;
         UUID playerId = event.getPlayer().getUniqueId();
         Bukkit.getScheduler().runTask(this, () -> showBubble(playerId, message));
