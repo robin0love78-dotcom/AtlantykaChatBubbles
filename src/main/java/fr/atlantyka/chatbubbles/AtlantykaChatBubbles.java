@@ -48,7 +48,8 @@ public final class AtlantykaChatBubbles extends JavaPlugin implements Listener, 
         bubbles.clear();
     }
 
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    // Capture aussi les messages annules par un chat personnalise en Skript.
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = false)
     public void onChat(AsyncChatEvent event) {
         String message = LegacyComponentSerializer.legacySection().serialize(event.message());
         if (message == null || message.isBlank()) return;
