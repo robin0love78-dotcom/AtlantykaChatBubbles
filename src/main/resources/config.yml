@@ -1,0 +1,10 @@
+duration-seconds: 5
+max-messages: 3
+height-offset: 2.25
+line-spacing: 0.30
+line-width: 200
+shadow: true
+see-through: false
+background-color: "#80000000"
+text-opacity: 255
+cancel-normal-chat: false
