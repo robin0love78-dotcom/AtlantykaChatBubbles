@@ -1,0 +1,14 @@
+name: AtlantykaChatBubbles
+version: 1.0.0
+main: fr.atlantyka.chatbubbles.AtlantykaChatBubbles
+api-version: '1.21'
+author: Atlantyka
+description: Bulles de discussion au-dessus des joueurs.
+commands:
+  holochat:
+    description: Gestion des bulles de chat
+    usage: /holochat reload
+permissions:
+  atlantykachatbubbles.admin:
+    description: Autorise la gestion du plugin
+    default: op
